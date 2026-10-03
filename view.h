@@ -8,6 +8,9 @@ typedef struct _Mp3tag
     char *mp3_filename;
     FILE *fptr_mp3;
 
+    FILE *fptr_temp_mp3;
+    char *temp_filename;
+
 } Mp3tag;
 
 //check operation type 

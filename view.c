@@ -64,44 +64,38 @@ Status check_signature(Mp3tag *mp3Tag)
 Status validate_args(char *argv[],Mp3tag *mp3Tag)
 {
     int len=strlen(argv[2]);
-    if(len<5)
+    if(len<4)
     {
         printf("Entered INVALID EXTENSION FILE\n");
         return e_failure;
     }
     //mp3.mpeg file
-    if(argv[2][len-5]!='.')
+    if(argv[2][len-4]!='.')
     {
         printf("Enter Extension of the file\n");
         printf("Usage : ./a.out -v mp3filename.mp3/mpeg\n");
         return e_failure;
     }
-    if(argv[2][len-4]!='m')
+    if(argv[2][len-3]!='m')
     {
         printf("Enter Extension of the file correctly\nThere should be one 'm' in the extension\n");
         printf("Usage : ./a.out -v mp3filename.mp3/mpeg\n");
         return e_failure;
     }
-    if(argv[2][len-3]!='p')
+    if(argv[2][len-2]!='p')
     {
         printf("Enter Extension of the file correctly\nThere should be one 'p' in the extension\n");
         printf("Usage : ./a.out -v mp3filename.mp3/mpeg\n");
         return e_failure;
     }
-    if(argv[2][len-2]!='e')
+    if(argv[2][len-1]!='3')
     {
-        printf("Enter Extension of the file correctly\nThere should be one 'e' in the extension\n");
+        printf("Enter Extension of the file correctly\nThere should be one '3' in the extension\n");
         printf("Usage : ./a.out -v mp3filename.mp3/mpeg\n");
         return e_failure;
     }
 
-    if(argv[2][len-1]!='g')
-    {
-        printf("Enter Extension of the file correctly\nThere should be one 'g' in the extension\n");
-        printf("Usage : ./a.out -v mp3filename.mp3/mpeg\n");
-        return e_failure;
-    }
-
+   
     mp3Tag->mp3_filename=argv[2];
 
     //read/open file
@@ -164,7 +158,7 @@ Status execute_view(Mp3tag *mp3Tag)
 
         char *buffer=malloc((Size.value)*sizeof(char));
         fread(buffer,1,Size.value-1,mp3Tag->fptr_mp3);
-        buffer[Size.value]='\0';
+        buffer[Size.value-1]='\0';
 
         if(strcmp(tag,"TIT2")==0 || strcmp(tag,"TPE1")==0 || strcmp(tag,"TALB")==0 || strcmp(tag,"TYER")==0 || strcmp(tag,"TCON")==0 || strcmp(tag,"COMM")==0 )
         {
